@@ -1,0 +1,27 @@
+#leave_message_form{
+    width:80%;
+    margin: auto;
+}
+
+#leave_message_uname{
+    border: 1px solid #DFDFDF;
+    height: 20px;
+}
+
+#leave_message_content{
+    width: 95%;
+    height: 350px;
+    font-size: 1em;
+    border: 1px solid #DFDFDF;
+}
+
+#leave_message_content_sub{
+    width:10%;
+    cursor: pointer;
+    height: 32px;
+}
+#leave_message_content_sub:hover{
+    background-color: #1094fa;
+    color: white;
+}
+

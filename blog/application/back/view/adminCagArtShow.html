@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类别文章展示</title>
+    <link rel="stylesheet" href="web/back/css_styles/adminCagArtShow.css">
+</head>
+<body>
+<div id="container">
+ <?php  if(!empty($_SESSION['cag_art_list'])){
+    foreach ($_SESSION['cag_art_list'] as $item){
+    ?>
+    <div id="article_list_view">
+        <div id="article_title">
+            <h3>
+        <span class="article_title"><a href="?p=back&c=Articles&a=cag_art_single_show&art_id=<?php echo $item['article_id'];?>" id="a_title">
+            <?php echo $item['article_title']; ?>
+        </a>
+        </span>
+            </h3>
+        </div>
+        <div id="article_description"><?php echo mb_substr($item['article_content'],0,300,'utf-8'); ?>
+        </div><br>
+        <div id="article_manage">
+            <span class="link_postdate"><?php echo date('Y-m-d H:i',$item['article_lastmodifidtime']); ?></span>
+            <span class="view_count" title="阅读次数"><a href="?p=back&c=Articles&a=cag_art_single_show&art_id=<?php echo $item['article_id'];?>" title="阅读次数">浏览</a>(<?php echo $item['article_view_count']; ?>)</span>
+            <span class="comment_count" title="评论次数"><a href="?p=back&c=Articles&a=cag_art_single_show&art_id=<?php echo $item['article_id'];?>#comment_bar" title="评论次数" onclick="">评论</a>(<?php echo $item['article_comment_count']; ?>)</span>
+            <span class="dit"><a href="?p=back&c=Articles&a=edit_art&art_id=<?php echo $item['article_id'];?>" title="编辑">编辑</a></span>
+            <span class="link_delete"><a href="?p=back&c=Articles&a=delete_art&art_id=<?php echo $item['article_id'];?>" onclick="" title="删除">删除</a></span>
+        </div>
+        <br><br>
+    </div><br>
+    <?php }}?>
+</div>
+</body>
+</html>

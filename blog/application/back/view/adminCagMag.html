@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章管理</title>
+    <script type="text/javascript" src="web/back/js/adminCagMag.js"></script>
+</head>
+<body>
+<form method="post" action="index.php?p=back&c=Articles&a=insert_cag" onsubmit="return check_null();">
+    <div>
+        <input type="text" id="category" name="category">&nbsp;&nbsp;<input type="submit" value="添加分类"  style="font-size:18px;color: white;width: 90px;background-color: #006ad0">
+    </div>
+</form>
+
+
+<br><br>
+<table id="lstBox"  cellspacing="0" width="900px" border="1px" bordercolor="#95CAE4">
+    <thead>
+    <tr height="50px"><th class="tdleft" style="width:300px;">类别</th><th style="width:300px;">文章</th><th style="width:300px;">操作</th></tr>
+    </thead>
+    <tbody id="lstBody">
+    <?php
+ if(!empty($_SESSION['allCag'])){
+            foreach ($_SESSION['allCag'] as $item){
+   ?>
+    <tr bgcolor="#ffefd5" height="40px" >
+        <td id='tdleft' align="center"><?php echo $item['category_name']; ?></td>
+        <td align="center">
+            <!--隐藏的表单域，用于编辑文章类别的时候传递cag_id-->
+            <input type="hidden" value="<?php echo $item['category_id']; ?>" name="category_id">
+
+            <a href="?p=back&c=Articles&a=cag_art_show&cag_id=<?php echo $item['category_id']; ?>"><?php echo $item['article_count']; ?></a>
+        </td>
+        <td align="center">
+            <a href="javascript:void(0)" name='edit' onclick="editCag(this.parentNode.parentNode)" >编辑</a> |
+            <a href="index.php?p=back&c=Articles&a=delete_cag&cag_id=<?php echo $item['category_id']; ?>" name='del'>删除</a>
+        </td>
+    </tr>
+    <?php }}?>
+
+    </tbody>
+</table>
+
+</body>
+</html>

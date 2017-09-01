@@ -1,0 +1,50 @@
+
+
+/*文章展示css*/
+
+
+#art_container{
+    width:100%;
+}
+#article_list_view{
+    border-bottom: 1px dashed #DFDFDF;
+    margin: auto;
+    width: 90%;
+}
+#a_title{
+    color:black;
+}
+#article_title{
+    width: 100%;
+    background-color:#FFCCCC;
+}
+#article_list_view a{
+    text-decoration: none;
+}
+#article_description{
+    font-size: 14px;
+    color:#6c6e69;
+    text-indent: 25px;
+    margin-top: 10px;
+}
+#article_manage{
+    margin-top: 2px;
+    margin-left:57%;
+    font-size: small;
+    color: #999999;
+}
+#article_manage a{
+    color:#3300aa;
+}
+#page{
+    margin: auto;
+    text-align: center;
+}
+#page a{
+    border: 2px solid #33CCFF;
+    text-decoration: none;
+    color:#1094fa;
+}
+#page a:hover{
+    background: #FF9900;
+}

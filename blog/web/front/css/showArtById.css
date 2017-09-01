@@ -1,0 +1,114 @@
+
+#showArtById_art_cag{
+    width: 100%;
+    font-size: 1.1em;
+    background: #77ee77;
+
+}
+
+
+#showArtById{
+    border: 1px solid #DFDFDF;
+    width:100%;
+}
+#showArtById_split_line{
+    border-bottom: 1px solid #DFDFDF;
+    width:100%;
+    height: 7px;
+}
+#showArtById_article_title{
+    background-color: #ffeeee;
+}
+#showArtById_a_title{
+    color:black;
+
+}
+
+#showArtById a{
+    text-decoration: none;
+}
+#showArtById_article_description{
+    font-size: 1.1em;
+    color:#6c6e69;
+    text-indent: 25px;
+}
+#showArtById_article_manage{
+    margin-left:50%;
+    font-size: small;
+    color: #9CACAF;
+}
+#showArtById_article_manage a{
+    color:#3300aa;
+}
+
+
+
+
+.showArtById_comment_class{
+    border: 1px solid #DFDFDF;
+    width:100%;
+    margin-top:30px;
+}
+.showArtById_panel_head{
+    border: 0px solid #DFDFDF;
+    margin-left: 10px;
+    background-color: #ffffbe;
+}
+#showArtById_comment_bar{
+    border: 0px solid #DFDFDF;
+    margin-left: 10px;
+    background-color: #95CAE4;
+}
+#showArtById_comment_list{
+    border: 1px solid #DFDFDF;
+    margin-left: 10px;
+    position: relative;
+}
+#showArtById_comment_content{
+    border: 0px solid #DFDFDF;
+    margin-left: 10px;
+    text-indent: 25px;
+}
+#showArtById_comment_from{
+    margin-left: 10px;
+    color:#ff8000;
+    font-size:large;
+}
+
+
+#showArtById_comment_time{
+    position: absolute;
+    right:20%;
+    font-size: small;
+    color: #ff8000;
+}
+
+
+.showArtById_comment_uname{
+    border: 1px solid #DFDFDF;
+    height: 20px;
+}
+
+
+.showArtById_comment_content{
+    width: 90%;
+    height: 400px;
+    font-size: 1em;
+    border: 1px solid #DFDFDF;
+}
+
+
+#showArtById_comment_form{
+    width:80%;
+    margin: auto;
+}
+#showArtById_submit_comment{
+    margin-top: 65px;
+    width:10%;
+    cursor: pointer;
+    height: 32px;
+}
+#showArtById_submit_comment:hover{
+    background-color: #1094fa;
+    color: white;
+}

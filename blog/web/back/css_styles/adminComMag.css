@@ -1,0 +1,16 @@
+.com_content{
+    text-indent: 25px;
+}
+#linkPage{
+    height:20px;
+    margin-left:25%;
+}
+#linkPage a{
+    border:1px solid #ff8000;
+    margin-left:27px;
+    text-decoration:none;
+}
+#linkPage a:hover{
+    background-color:#ff8000;
+    color:white;
+}

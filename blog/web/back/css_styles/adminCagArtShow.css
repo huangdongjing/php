@@ -1,0 +1,57 @@
+#container{
+    border: 1px solid #DFDFDF;
+    width:90%;
+}
+#article_list_view{
+    border-bottom: 1px dashed #DFDFDF;
+    margin: auto;
+    width: 90%;
+}
+#split_line{
+    border-bottom: 1px solid #DFDFDF;
+    width:100%;
+    height: 7px;
+}
+#a_title{
+    color:black;
+}
+#article_list_view a{
+    text-decoration: none;
+}
+#article_description{
+    font-size: 14px;
+    color:#6c6e69;
+    text-indent: 25px;
+}
+#article_manage{
+    border: 0px solid #ff0000;
+    width: 400px;
+    margin-left:65%;
+    font-size: small;
+    color: #999999;
+}
+#article_manage a{
+    color:#3300aa;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="web/back/css_styles/adminArcMag.css">
+
+</head>
+<body>
+<table cellspacing="0" width="1100px" border="1px" bordercolor="#95CAE4">
+    <tr style="height:50px;margin: auto">
+        <th>标题</th>
+        <th style="width:60px;">浏览量</th>
+        <th style="width:60px;">评论</th>
+        <th style="width:60px;">作者</th>
+        </th><th style="width:130px;">操作</th></tr>
+
+    <?php
+    if($_SESSION['curp_arts']!=null){
+    foreach($_SESSION['curp_arts'] as $each_art){
+
+?>
+    <tr style="height:45px;margin: auto" bgcolor="#ffefd5">
+        <td >
+            <a href="?p=back&c=Articles&a=cag_art_single_show&art_id=<?php echo  $each_art['article_id'];?>" style="text-decoration: none">
+                <?php echo $each_art['article_title'];?>
+            </a>
+            <span style="opacity: 0.5;"> <?php echo '('.date('Y-m-d H:i',$each_art['article_lastmodifidtime']).')';?></span>
+        </td>
+        <td align="center"><?php echo $each_art['article_view_count'];?></td>
+        <td align="center"><?php echo $each_art['article_comment_count'];?></td>
+        <td align="center"><?php echo $each_art['article_author'];?></td>
+        <td align="center">
+            <a href="?p=back&c=Articles&a=edit_art&art_id=<?php echo $each_art['article_id'];?>">编辑</a> |
+            <a href="?p=back&c=Articles&a=delete_art&art_id=<?php echo $each_art['article_id'];?>">删除</a>
+        </td>
+    </tr>
+    <?php }} ?>
+</table><br><br><br><br><br>
+<div id="linkPage">
+    <a href="index.php?p=back&c=Articles&a=art_mag&curPage=1">首页</a>
+    <a href="index.php?p=back&c=Articles&a=art_mag&curPage=<?php if($_SESSION['curPage']==1){echo 1;}else{echo $_SESSION['curPage']-1;}?>">上一页</a>
+    <a href="index.php?p=back&c=Articles&a=art_mag&curPage=<?php if($_SESSION['curPage'] == $_SESSION['totalPag']){echo $_SESSION['curPage'];}else{echo $_SESSION['curPage']+1;}?>">下一页</a>
+    <a href="index.php?p=back&c=Articles&a=art_mag&curPage=<?php echo$_SESSION['totalPag'];?>">尾页</a> &nbsp;第<?php echo $_SESSION['curPage']; ?>页/共<?php echo $_SESSION['totalPag']; ?>页
+    &nbsp;共<?php echo $_SESSION['totalRec']; ?>条
+</div>
+</body>
+</html>

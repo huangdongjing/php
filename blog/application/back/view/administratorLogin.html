@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>adminLogin</title>
+    <link type="text/css" rel="stylesheet" href="web/back/css_styles/adminlogin.css">
+</head>
+<body>
+<div id="container">
+    <div id="title_nav"></div>
+
+    <div id="content">
+        <div id="form_sub">
+            <p id="manage_tx">管理员登陆面板</p>
+            <form id="form_sub_a" action="index.php?p=back&c=Admin&a=check" method="post">
+                <p class="tx_01">管理员账号:&nbsp;&nbsp;<input class="input_va" type="text" name="username" value="<?php if(!empty($_COOKIE['username'])) echo $_COOKIE['username'] ?>" /></p>
+                <p class="tx_01">管理员密码:&nbsp;&nbsp;<input class="input_va" type="password" name="password" value="<?php if(!empty($_COOKIE['password'])) echo $_COOKIE['password'] ?>"/></p>
+                <div class="tx_captcha"><img src="index.php?p=back&c=Admin&a=captcha" alt="CAPTCHA" onclick="this.src='index.php?p=back&c=Admin&a=captcha&+Math.random()'"></div>
+                <p class="tx_01">输入验证码:&nbsp;&nbsp;<input class="input_va" type="text" name="captcha" /></p>
+                <input class="btn_s" type="submit" value="登陆" />
+                <input class="btn_s" type="reset" value="取消" />
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

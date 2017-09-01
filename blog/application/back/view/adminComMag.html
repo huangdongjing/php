@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="web/back/css_styles/adminComMag.css">
+</head>
+<body>
+<table cellspacing="0" width="1100px" border="1px" bordercolor="#95CAE4">
+    <thead>
+    <tr height="50px"><th class="tdleft" style="width:426px;">标题</th><th style="width:140px;">作者</th><th style="width:140px;">时间</th><th style="width:100px;">操作</th></tr>
+    </thead>
+    <tbody>
+    <?php
+ if(!empty( $_SESSION['curp_coms'])){
+            foreach ( $_SESSION['curp_coms'] as $item){
+   ?>
+    <tr height="40px" bgcolor="#ffeeee" >
+        <td>
+            <a href="?p=back&c=Articles&a=cag_art_single_show&art_id=<?php echo  $item['art_id'];?>#comment_title" style="text-decoration: none"><?php echo $item['art_title'];?></a>
+        </td>
+        <td  align="center">
+            <a href="?p=back&c=Articles&a=cag_art_single_show&art_id=<?php echo  $item['art_id'];?>#comment_title" class='user_name' style="text-decoration: none"><?php echo $item['com_uname'];?></a>
+        </td>
+        <td  align="center" style="color:#3300aa"><?php echo date('Y-m-d H:i:s',$item['com_time']);?></td>
+        <td  align="center">
+            <a class='del' href="?p=back&c=Articles&a=com_delete&com_id=<?php echo  $item['com_id'];?>" style="text-decoration: none">删除</a>
+        </td>
+    </tr>
+    <tr bgcolor="#ffffbe">
+        <td colspan=4>
+            <div class='com_content'><?php echo $item['com_content'];?></div>
+        </td>
+    </tr>
+    <?php }}?>
+    </tbody>
+</table><br><br><br><br><br>
+<div id="linkPage">
+    <a href="index.php?p=back&c=Articles&a=com_mag&curPage=1">首页</a>
+    <a href="index.php?p=back&c=Articles&a=com_mag&curPage=<?php if($_SESSION['curPage']==1){echo 1;}else{echo $_SESSION['curPage']-1;}?>">上一页</a>
+    <a href="index.php?p=back&c=Articles&a=com_mag&curPage=<?php if($_SESSION['curPage'] == $_SESSION['totalPag']){echo $_SESSION['curPage'];}else{echo $_SESSION['curPage']+1;}?>">下一页</a>
+    <a href="index.php?p=back&c=Articles&a=com_mag&curPage=<?php echo$_SESSION['totalPag'];?>">尾页</a> &nbsp;第<?php echo $_SESSION['curPage']; ?>页/共<?php echo $_SESSION['totalPag']; ?>页
+    &nbsp;共<?php echo $_SESSION['totalRec']; ?>条
+</div>
+</body>
+</html>

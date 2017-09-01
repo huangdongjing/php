@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="web/back/css_styles/adminCagArtSingShow.css">
+
+</head>
+<body>
+<div id="container">
+        <div id="article_title">
+            <h3>
+        <span class="article_title"><a href="javascript:void(0)" id="a_title">
+            &nbsp;<?php echo $_SESSION['cag_art_single']['article_title']; ?>
+        </a>
+        </span>
+            </h3>
+        </div>
+        <div id="article_manage">
+            <span class="link_postdate"><?php echo date('Y-m-d H:i',$_SESSION['cag_art_single']['article_lastmodifidtime']); ?></span>
+            <span class="view_count" title="浏览量">&nbsp;浏览量：<?php echo $_SESSION['cag_art_single']['article_view_count'];?></span>
+            <span class="comment_count" title="评论次数"><a href="#comment_bar" title="评论次数" onclick="">评论</a>(<?php echo $_SESSION['cag_art_single']['article_comment_count']; ?>)</span>
+            <span class="dit"><a href="?p=back&c=Articles&a=edit_art&art_id=<?php echo $_SESSION['cag_art_single']['article_id'];?>" title="编辑">编辑</a></span>
+            <span class="link_delete"><a href="?p=back&c=Articles&a=delete_art&art_id=<?php echo $_SESSION['cag_art_single']['article_id'];?>" onclick="" title="删除">删除</a></span>
+        </div>
+        <div id="split_line"></div>
+        <div id="article_description"><?php echo $_SESSION['cag_art_single']['article_content']; ?>
+        </div><br>
+    <br>
+</div>
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head"><h4>查看评论</h4></div><br>
+    <?php
+    $i = 1;
+    $k = 1;
+ if(!empty($_SESSION['single_art_comments'])){
+            foreach ($_SESSION['single_art_comments'] as $item){
+   ?>
+    <div id="comment_list"><br>
+        <div><span id="comment_from"><strong>by&nbsp;<?php if(!empty($item['comment_uname'])){
+            echo $item['comment_uname'];
+        }else{ echo '游客'.$i; $i++;}?>：</strong></span><span id="comment_time"><?php echo $k.'楼';$k++; ?><?php echo date('Y-m-d H:i',$item['comment_time']); ?>发表</span></div><br>
+        <div id="comment_content"><?php echo $item['comment_content']; ?></div><br>
+    </div><br>
+<?php  }}else echo '&nbsp;&nbsp;暂无评论';?>
+
+    <br><br><br><div id="comment_bar"><h4>发表评论</h4></div>
+
+    <div id="comment_form">
+        <form action="index.php?p=back&c=Articles&a=comment_art" method="post">
+            <input type="hidden" name="art_id" value="<?php echo $_SESSION['cag_art_single']['article_id'];?>">
+            <p>用户名：&nbsp;<input type="text" name="comment_uname">&nbsp;<font style="color: #999999;font-size: small">(此处可选填)</font></p>
+            <p>评论内容：&nbsp;<font style="color: #ff0000;font-size: small">(最多输入1500个字符)</font></p>
+            <textarea cols="50" rows="30" class="comment_content" name="comment_content"></textarea>
+            <br><br/><input type="submit" value="提交" id="submit_comment"><br/><br>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="web/front/css/frontManage.css">
+    <script src="web/front/js/frontManage.js"></script>
+    <link rel="stylesheet" href="web/front/css/artsShow.css">
+    <link rel="stylesheet" href="web/front/css/showArtById.css">
+    <link rel="stylesheet" href="web/front/css/leaveMessage.css">
+
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="web/back/js/ueditor/ueditor.config.js"></script>
+    <!--&lt;!&ndash; 编辑器源码文件 &ndash;&gt;-->
+    <script type="text/javascript" src="web/back/js/ueditor/ueditor.all.js"></script>
+
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <div id="banner">
+            <div id="banner_text"><a href="javascript:void(0)"><strong><p>生命的意义在于奋斗，</p><br><p>然后拿到你想要的东西，做你想做的事</p></strong></a></div>
+        </div>
+        <div id="navigate">
+           <ul class="nav_a">
+               <li class="a_home"><a href="javascript:loadPage('index.php?p=front&c=Articles&a=getAllArts')">首页</a></li>
+               <li class="a_photo"><a href="javascript:void(0)" onclick="alert('该功能暂未开放！')">相册</a></li>
+               <li class="a_mes"><a href="javascript:void(0)" onclick="loadMsgForm()">留言</a></li>
+               <li class="a_me"><a href="javascript:void(0)" onclick="alert('我就是静静，静静就是我^_^')">关于我</a></li>
+               <li class="a_adminlogin"><a href="?p=back&c=Admin&a=login">后台</a></li>
+           </ul>
+        </div>
+    </div>
+
+    <div id="body">
+
+
+        <div id="middle" name="middle">
+        </div>
+
+
+
+        <div id="right">
+            <br><br>
+            <section class="arts_search">
+                <h2>文章检索</h2><br><br>
+                <div >
+                    <form id="search">
+                        <input type="text" name="art_search" id="art_search">
+                        <input type="button" src="" id="art_search_sub" value="搜" onclick="search_arts()">
+                    </form>
+                </div>
+            </section><br><br><br>
+
+            <section class="cags">
+                <h2>文章标签</h2>
+                <div id="category">
+                    <?php
+if(!empty( $_SESSION['allCag'])){
+            foreach ( $_SESSION['allCag'] as $each_cag){
+?>
+                    <div>
+                        <input type="hidden" value="<?php echo $each_cag['category_id'];?>" id="hid_cag_id">
+                        <a href="javascript:void(0)" onclick="getCagArts(this.parentNode.children[0])">
+                            <?php echo $each_cag['category_name'].'('.$each_cag['article_count'].')';?>
+                        </a>
+                    </div>
+                    <?php }} ?>
+                </div>
+            </section>
+
+
+            <br><br><br><section class="coms">
+                <br><br>
+                <h2>最新评论</h2><br>
+                <div id="new_comments">
+                    <ul>
+                        <?php
+if(!empty( $_SESSION['show_coms'])){
+            foreach ( $_SESSION['show_coms'] as $each_com){
+?>
+                        <li class="com">
+                            <span>
+                                <input type="hidden" id="new_art_id" value="<?php echo $each_com['art_id'];?>">
+                                <a id="com_title" href="javascript:void(0)" onclick="newLoadArtById(this.parentNode)">
+                                <?php echo $each_com['art_title'];?>--by <?php if(!empty($each_com['com_uname'])) {echo $each_com['com_uname'];} else echo '游客';?>：
+                            </a><span id="com_time_style">&nbsp;(<?php echo date('Y-m-d H:i:s',$each_com['com_time'])?>)</span>
+                            </span><br>
+                            <span id="com_content">&nbsp;&nbsp;<?php printf('%s',mb_substr($each_com['com_content'],0,200,'utf-8'));?>...</span>
+                        </li>
+                        <br><li class="divide_line"></li><br>
+                        <?php }} ?>
+                    </ul>
+                </div>
+            </section><br>
+
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="foot_title">Copyright 2017 - 2018 All Rights Reserved Powered by aiyayablog</div>
+    </div>
+
+</div>
+</body>
+</html>

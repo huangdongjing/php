@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加文章</title>
+    <script type="text/javascript" src="web/back/js/adminAddArticle.js"></script>
+</head>
+<body>
+
+<form method="post" action="index.php?p=back&c=Articles&a=insert_art" onsubmit="return art_add_check();">
+
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="web/back/js/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="web/back/js/ueditor/ueditor.all.js"></script>
+    <hr/><br>
+    <h3 style="display: inline;">文章标题：</h3>
+    <sup style="color: #ff0000">*</sup>
+
+    <input type="text" id="article_title" name="article_title" maxlength="50" style="width:800px;font-size: medium"
+    value="<?php  if(isset($_COOKIE['edit_art_title'])){echo  $_SESSION['edit_art']['article_title'];}else echo '';?>">
+    <br><br>
+
+    文章分类：<input type="text" id="article_category" name="article_category" readonly="true" style="width:800px;font-size: small">
+    <a href="index.php?p=back&c=Articles&a=cag_mag">新增分类</a>
+    <br><br>
+    <?php
+
+if(!empty($_SESSION['allCag'])){
+                 $i=1;
+           foreach ($_SESSION['allCag'] as $item){
+             if($i%10==0){
+             echo '<br/><br/>';
+}
+
+  ?>
+
+
+    <input type="checkbox" name="checkbox" value="<?php echo $item['category_name']; ?>" onclick="fill_cag_text();" ><?php echo $item['category_name']; ?>&nbsp;&nbsp;&nbsp;
+<?php $i++; }} ?>
+
+    <br><br>
+    <h5 style="display: inline;">文章内容：</h5><!--<font color="#ff0000" size="1ps">&nbsp;（ps：目前只实现了文本上传的功能）</font> --!>
+
+    <!--隐藏text表单用于存储待编辑的文章id和内容-->
+
+    <input type="hidden" name="hid_id" value="<?php  if(isset($_COOKIE['edit_art_id'])){echo $_COOKIE['edit_art_id'];}else echo '';?>" >
+
+    <br><br><input type="hidden" id="hid_content" value="<?php  if(isset($_COOKIE['edit_art_content'])){echo $_COOKIE['edit_art_content'];}else echo '';?>" >
+
+    <!-- 加载编辑器的容器 -->
+
+    <script id="container" name="content" type="text/plain">
+
+    </script>
+
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+
+            initialFrameWidth :1000,//设置编辑器宽度
+            initialFrameHeight:400,//设置编辑器高度
+            scaleEnabled:true    //滚动条
+        });
+        var inicontent=document.getElementById('hid_content').value;
+        if(inicontent!=null || inicontent!=''){
+            ue.ready(function() {//编辑器初始化完成再赋值
+                ue.setContent(inicontent);  //赋值给UEditor
+            });
+        }
+
+    </script>
+    <br><input type="submit" value="发表文章" style="height: 30px;width:70px; color: #ff0000;margin-left: 880px;margin-top: 40px;">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+</form>
+</body>
+</html>

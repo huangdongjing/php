@@ -1,0 +1,54 @@
+<div id="showArtById_art_cag">
+分类：&nbsp<?php foreach($_SESSION['single_art_cag'] as $cags){echo $cags['category_name'].'&nbsp';} ?>
+</div>
+<div id="showArtById">
+    <div id="showArtById_article_title">
+        <h3>标题：
+        <span class="showArtById_article_title"><a href="javascript:void(0)" id="showArtById_a_title">
+            &nbsp;<?php echo $_SESSION['cag_art_single']['article_title']; ?>
+        </a>
+        </span>
+        </h3>
+    </div><br>
+    <div id="showArtById_article_manage">
+        <span class="showArtById_link_postdate"><?php echo date('Y-m-d H:i',$_SESSION['cag_art_single']['article_lastmodifidtime']); ?></span>
+        <span class="showArtById_view_count" title="浏览量">&nbsp;浏览量：<?php echo $_SESSION['cag_art_single']['article_view_count'];?></span>
+        <span class="showArtById_comment_count" title="评论次数"><a href="#showArtById_comment_bar" title="评论次数" onclick="">评论</a>(<?php echo $_SESSION['cag_art_single']['article_comment_count']; ?>)</span>
+    </div>
+    <div id="showArtById_split_line"></div>
+    <div id="showArtById_article_description"><?php echo $_SESSION['cag_art_single']['article_content']; ?>
+    </div><br>
+    <br>
+</div>
+
+
+<div class="showArtById_comment_class">
+    <div id="showArtById_comment_title" class="showArtById_panel_head"><h4>查看评论</h4></div><br>
+    <?php
+    $i = 1;
+    $k = 1;
+ if(!empty($_SESSION['single_art_comments'])){
+            foreach ($_SESSION['single_art_comments'] as $item){
+   ?>
+    <div id="showArtById_comment_list"><br>
+        <div><span id="showArtById_comment_from"><strong>by&nbsp;<?php if(!empty($item['comment_uname'])){
+            echo $item['comment_uname'];
+        }else{ echo '游客'.$i; $i++;}?>：</strong></span><span id="showArtById_comment_time"><?php echo $k.'楼 ';$k++; ?><?php echo date('Y-m-d H:i',$item['comment_time']); ?>发表</span></div><br>
+        <div id="showArtById_comment_content"><?php echo $item['comment_content']; ?></div><br>
+    </div><br>
+    <?php  }}else echo '&nbsp;&nbsp;暂无评论';?>
+
+    <br><br><br><div id="showArtById_comment_bar"><h4>发表评论</h4></div>
+
+    <div id="showArtById_comment_form">
+        <form method="post">
+            <input type="hidden" id="hid_art_id"  value="<?php echo $_SESSION['cag_art_single']['article_id']; ?>">
+           <br> <p>用户名：&nbsp;<input type="text" maxlength="20" name="comment_uname" id="showArtById_comment_uname" class="showArtById_comment_uname">&nbsp;<font style="color: #999999;font-size: small">(此处可选填)</font></p>
+            <br><p>评论内容：&nbsp;<font style="color: #ff0000;font-size: small">(最多输入1500个字符)</font></p>
+            <!-- 加载编辑器的容器 -->
+            <br><textarea id="showArtById_comment_com" class="showArtById_comment_content" name="showArtById_comment_content"></textarea>
+            <br><br/><input type="button" value="提交" id="showArtById_submit_comment" onclick="submitCommentForm()"><br/><br>
+        </form>
+    </div>
+
+</div>
